@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.prompttest/
+generated.prompttest.yaml
+*.log
+.env
+.env.*
+.DS_Store

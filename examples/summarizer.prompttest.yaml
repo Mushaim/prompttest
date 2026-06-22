@@ -1,0 +1,16 @@
+provider: anthropic
+model: claude-haiku-4-5
+prompt: |
+  Summarize the following text in one short sentence. If the text is empty, say "Nothing to summarize."
+  {{input}}
+tests:
+  - name: summarizes key idea
+    vars: { input: "The cat sat on the mat. It was a sunny afternoon and the cat felt happy and warm." }
+    assert:
+      - { type: contains-any, value: ["cat"] }
+      - { type: max-words, value: 30 }
+      - { type: llm-judge, rubric: "A single concise sentence that captures the main idea about the cat." }
+  - name: handles empty input gracefully
+    vars: { input: "" }
+    assert:
+      - { type: llm-judge, rubric: "Indicates there is nothing to summarize rather than inventing content." }

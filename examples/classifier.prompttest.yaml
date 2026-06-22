@@ -1,0 +1,20 @@
+provider: anthropic
+model: claude-haiku-4-5
+prompt: |
+  Classify the sentiment of this review as exactly one word: positive, negative, or neutral.
+  Review: {{review}}
+tests:
+  - name: clear positive
+    vars: { review: "Absolutely love this product, it changed my life!" }
+    assert:
+      - { type: regex, value: "(?i)positive" }
+      - { type: max-words, value: 3 }
+  - name: clear negative
+    vars: { review: "Terrible. Broke after one day and support ignored me." }
+    assert:
+      - { type: regex, value: "(?i)negative" }
+  - name: stays on label (no essay)
+    vars: { review: "It's fine, does the job." }
+    assert:
+      - { type: max-words, value: 3 }
+      - { type: llm-judge, rubric: "Answer is exactly one of: positive, negative, neutral (a single label, not a sentence)." }

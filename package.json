@@ -1,0 +1,31 @@
+{
+  "name": "prompttest",
+  "version": "0.1.0",
+  "description": "Test your LLM prompts like code — YAML evals, LLM-as-judge, CI gating, and auto-generated test suites from a plain-English spec.",
+  "type": "module",
+  "bin": {
+    "prompttest": "dist/cli.js"
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node dist/cli.js run examples",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["llm", "prompt", "testing", "eval", "evals", "ci", "anthropic", "claude", "llm-as-judge", "prompt-engineering"],
+  "license": "MIT",
+  "author": "Mushaim Khan",
+  "repository": { "type": "git", "url": "https://github.com/Mushaim/prompttest" },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.104.0",
+    "picocolors": "^1.1.1",
+    "yaml": "^2.6.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
