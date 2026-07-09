@@ -8,7 +8,7 @@ export async function generateSuite(opts: { prompt: string; spec: string; model?
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
   const res = await client.messages.create({
-    model: "claude-sonnet-4-6",
+    model: "claude-haiku-4-5",
     max_tokens: 2000,
     tools: [{
       name: "emit_suite",
